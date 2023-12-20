@@ -25,6 +25,9 @@ include('db.php');
 <link href="//fonts.googleapis.com/css?family=Federo" rel="stylesheet">
 <link href="//fonts.googleapis.com/css?family=Lato:300,400,700,900" rel="stylesheet">
 <!--//fonts-->
+<!-- notification  -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- notification  -->
 </head>
 <body>
 <!-- header -->
@@ -72,12 +75,12 @@ include('db.php');
 				<div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
 					<nav class="menu menu--iris">
 						<ul class="nav navbar-nav menu__list">
-							<li class="menu__item menu__item--current"><a href="" class="menu__link">Trang chủ</a></li>
-							<li class="menu__item"><a href="#about" class="menu__link scroll">Về chúng tôi</a></li>
-							<li class="menu__item"><a href="#team" class="menu__link scroll">Đội ngũ</a></li>
-							<li class="menu__item"><a href="#gallery" class="menu__link scroll">Thư viện</a></li>
-							<li class="menu__item"><a href="#rooms" class="menu__link scroll">Phòng</a></li>
-							<li class="menu__item"><a href="#contact" class="menu__link scroll">Liên hệ</a></li>
+							<li class="menu__item menu__item--current"><a href="" class="menu__link">Home</a></li>
+							<li class="menu__item"><a href="#about" class="menu__link scroll">About Us</a></li>
+							<li class="menu__item"><a href="#team" class="menu__link scroll">Team Size</a></li>
+							<li class="menu__item"><a href="#gallery" class="menu__link scroll">Gallery</a></li>
+							<li class="menu__item"><a href="#rooms" class="menu__link scroll">Room</a></li>
+							<li class="menu__item"><a href="#contact" class="menu__link scroll">Contact</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -720,7 +723,9 @@ include('db.php');
 					
 					
 					if(mysqli_query($con,$sql))
-					echo"OK";
+					{
+						echo '<script type="text/javascript">sweetAlert("Your Contact Has Been Sent !","","success")</script>';
+					}
 					
 				}
 				?>
@@ -728,9 +733,9 @@ include('db.php');
 		</div>
 		<div class="col-lg-6 col-md-6 col-sm-6 contact-w3-agile1" data-aos="flip-right">
 			<h4>Connect With Us</h4>
-			<p class="contact-agile1"><strong>Phone :</strong>+94 (65)222-44-55</p>
-			<p class="contact-agile1"><strong>Email :</strong> <a href="mailto:name@example.com">INFO@SUNRISE.COM</a></p>
-			<p class="contact-agile1"><strong>Address :</strong> New Kalmunai Road, Batticaloa, Sri Lanka</p>
+			<p class="contact-agile1"><strong>Phone :</strong>0985363602</p>
+			<p class="contact-agile1"><strong>Email :</strong> <a href="mailto:name@example.com">1951060783@e.tlu.edu.vn</a></p>
+			<p class="contact-agile1"><strong>Address :</strong> Thuy Loi University , Ha Noi , Viet Nam</p>
 																
 			<div class="social-bnr-agileits footer-icons-agileinfo">
 				<ul class="social-icons3">
@@ -747,7 +752,7 @@ include('db.php');
 </section>
 <!-- /contact -->
 			<div class="copy">
-		        <p>© 2017 SUNRISE . All Rights Reserved | Design by <a href="index.php">SUNRISE</a> </p>
+		        <p>© 2023 SUNRISE . All Rights Reserved | Design by <a href="index.php">Dương Đình Khánh</a> </p>
 		    </div>
 <!--/footer -->
 <!-- js -->

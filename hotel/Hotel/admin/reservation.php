@@ -15,6 +15,9 @@ include('db.php')
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
      <!-- Google Fonts-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+     <!-- notification  -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- notification  -->
 </head>
 <body>
     <div id="wrapper">
@@ -227,12 +230,15 @@ include('db.php')
 										$newUser="INSERT INTO `roombook`(`Title`, `FName`, `LName`, `Email`, `National`, `Country`, `Phone`, `TRoom`, `Bed`, `NRoom`, `Meal`, `cin`, `cout`,`stat`,`nodays`) VALUES ('$_POST[title]','$_POST[fname]','$_POST[lname]','$_POST[email]','$_POST[nation]','$_POST[country]','$_POST[phone]','$_POST[troom]','$_POST[bed]','$_POST[nroom]','$_POST[meal]','$_POST[cin]','$_POST[cout]','$new',datediff('$_POST[cout]','$_POST[cin]'))";
 										if (mysqli_query($con,$newUser))
 										{
-											echo "<script type='text/javascript'> alert('Your Booking application has been sent')</script>";
-											
+											// echo "<script type='text/javascript'> alert('Your Booking application has been sent')</script>";
+										      echo '<script type="text/javascript">sweetAlert("Your Booking application has been sent","","success")</script>';
+
 										}
 										else
 										{
-											echo "<script type='text/javascript'> alert('Error adding user in database')</script>";
+                                            echo '<script type="text/javascript">sweetAlert("Error !","Error adding user in database","error")</script>';
+
+											// echo "<script type='text/javascript'> alert('Error adding user in database')</script>";
 											
 										}
 									}

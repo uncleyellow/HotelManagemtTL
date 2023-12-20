@@ -16,7 +16,9 @@
      
       <link rel="stylesheet" href="css/style.css">
 
-  
+  <!-- notification  -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<!-- notification  -->
 </head>
 
 <body>
@@ -79,10 +81,12 @@
       if($count == 1) {
          
          $_SESSION['user'] = $myusername;
+        //  echo '<script type="text/javascript">sweetAlert("Welcome Back Admin !","","success")</script>';
          
          header("location: home.php");
       }else {
-         echo '<script>alert("Your Login Name or Password is invalid") </script>' ;
+        echo '<script type="text/javascript">sweetAlert("Error !","Your Login Name or Password is invalid","error")</script>';
+        //  echo '<script>alert("Your Login Name or Password is invalid") </script>' ;
       }
    }
 ?>
