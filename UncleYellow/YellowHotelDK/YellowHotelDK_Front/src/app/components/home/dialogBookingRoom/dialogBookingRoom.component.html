@@ -1,0 +1,17 @@
+<h2 mat-dialog-title class="justify-center flex">{{data.title}}</h2>
+<div mat-dialog-content>
+  <input class="form-control" type="text" [(ngModel)]="name" placeholder="Name">
+  <input class="form-control" type="email" [(ngModel)]="email" placeholder="Email">
+  <input class="form-control" type="tel" [(ngModel)]="phoneNumber" placeholder="Phone Number">
+  <select class="form-select" [(ngModel)]="kindOfRoom">
+    <option selected>Kind Of Room</option>
+    <option value="Junior Suite">Junior Suite</option>
+    <option value="Executive Suite">Executive Suite</option>
+    <option value="Super Deluxe">Super Deluxe</option>
+  </select>
+  <input class="form-control" type="text" [(ngModel)]="descriptions" placeholder="Descriptions">
+</div>
+<div mat-dialog-actions class="justify-center flex">
+  <button mat-raised-button color="primary" (click)="save()">Lưu</button>
+  <button mat-raised-button color="warn" (click)="cancel()">Huỷ</button>
+</div>
