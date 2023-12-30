@@ -9,5 +9,6 @@ namespace HotelManagementDA.Model
         public string? email { get; set; }
         public string? phone { get; set; }
         public string? description { get; set; }
+        public DateTime? sentDate { get; set; }
     }
 }
