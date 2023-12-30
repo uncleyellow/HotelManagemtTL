@@ -6,7 +6,7 @@
         <img class="w-100" src="assets/img/carousel-1.jpg" alt="Image">
         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
           <div class="p-3" style="max-width: 700px;">
-            <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Luxury Living</h6>
+            <h2 class="section-title text-white text-uppercase mb-3 animated slideInDown">Luxury Living</h2>
             <h1 class="display-3 text-white mb-4 animated slideInDown">Discover A Brand Luxurious Hotel</h1>
             <a class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Our Rooms</a>
             <a class="btn btn-light py-md-3 px-md-5 animated slideInRight" (click)="bookingRoom()">Book A Room</a>
@@ -17,7 +17,7 @@
         <img class="w-100" src="assets/img/carousel-2.jpg" alt="Image">
         <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
           <div class="p-3" style="max-width: 700px;">
-            <h6 class="section-title text-white text-uppercase mb-3 animated slideInDown">Luxury Living</h6>
+            <h2 class="section-title text-white text-uppercase mb-3 animated slideInDown">Luxury Living</h2>
             <h1 class="display-3 text-white mb-4 animated slideInDown">Discover A Brand Luxurious Hotel</h1>
             <a href="" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Our Rooms</a>
             <a href="" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Book A Room</a>
@@ -45,7 +45,7 @@
   <div class="container">
     <div class="bg-white shadow" style="padding: 35px;">
       <div class="row g-2">
-        <h6 class="section-title text-start text-primary text-uppercase">Contact Us</h6>
+        <h2 class="section-title text-start text-primary text-uppercase">Contact Us</h2>
         <div class="col-md-10">
 
           <div class="row g-2">
@@ -92,7 +92,7 @@
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
-        <h6 class="section-title text-start text-primary text-uppercase">About Us</h6>
+        <h2 class="section-title text-start text-primary text-uppercase">About Us</h2>
         <h1 class="mb-4">Welcome to <span class="text-primary text-uppercase">Yellow Hotel</span></h1>
         <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
         <div class="row g-3 pb-4">
@@ -124,7 +124,7 @@
             </div>
           </div>
         </div>
-        <a class="btn btn-primary py-3 px-5 mt-2" href="">Book A Room Now</a>
+        <a class="btn btn-primary py-3 px-5 mt-2" (click)="bookingRoom()">Book A Room Now</a>
       </div>
       <div class="col-lg-6">
         <div class="row g-3">
@@ -152,7 +152,7 @@
 <div class="container-xxl py-5">
   <div class="container">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-      <h6 class="section-title text-center text-primary text-uppercase">Our Rooms</h6>
+      <h2 class="section-title text-center text-primary text-uppercase">Our Rooms</h2>
       <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Rooms</span></h1>
     </div>
     <div class="row g-4">
@@ -181,7 +181,7 @@
             <p class="text-body mb-3">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
             <div class="d-flex justify-content-between">
               <!-- <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a> -->
-              <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
+              <a class="btn btn-sm btn-dark rounded py-2 px-4" (click)="bookingRoom('Junior Suite')">Book Now</a>
             </div>
           </div>
         </div>
@@ -211,7 +211,7 @@
             <p class="text-body mb-3">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
             <div class="d-flex justify-content-between">
               <!-- <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a> -->
-              <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
+              <a class="btn btn-sm btn-dark rounded py-2 px-4" (click)="bookingRoom('Executive Suite')">Book Now</a>
             </div>
           </div>
         </div>
@@ -241,7 +241,7 @@
             <p class="text-body mb-3">Erat ipsum justo amet duo et elitr dolor, est duo duo eos lorem sed diam stet diam sed stet lorem.</p>
             <div class="d-flex justify-content-between">
               <!-- <a class="btn btn-sm btn-primary rounded py-2 px-4" href="">View Detail</a> -->
-              <a class="btn btn-sm btn-dark rounded py-2 px-4" href="">Book Now</a>
+              <a class="btn btn-sm btn-dark rounded py-2 px-4" (click)="bookingRoom('Super Deluxe')">Book Now</a>
             </div>
           </div>
         </div>
@@ -256,7 +256,7 @@
 <div class="container-xxl py-5">
   <div class="container">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-      <h6 class="section-title text-center text-primary text-uppercase">Our Services</h6>
+      <h2 class="section-title text-center text-primary text-uppercase">Our Services</h2>
       <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Services</span></h1>
     </div>
     <div class="row g-4">
@@ -379,7 +379,7 @@
 <div class="container-xxl py-5">
   <div class="container">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-      <h6 class="section-title text-center text-primary text-uppercase">Our Team</h6>
+      <h2 class="section-title text-center text-primary text-uppercase">Our Team</h2>
       <h1 class="mb-5">Explore Our <span class="text-primary text-uppercase">Staffs</span></h1>
     </div>
     <div class="row g-4">

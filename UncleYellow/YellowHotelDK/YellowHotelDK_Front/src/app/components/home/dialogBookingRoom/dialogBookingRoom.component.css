@@ -1,3 +1,32 @@
-:host {
-  display: block;
+.dialog-container {
+  width: 600px;
+  /* background-color: white; */
+}
+
+.dialog-content,
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+}
+
+input,
+select,
+textarea {
+  width: 90%;
+}
+
+input,
+select {
+  margin-bottom: 10px;
+}
+
+button {
+  width: 150px;
+  margin: 0 5px;
+}
+
+.dialog-container {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 20px;
 }

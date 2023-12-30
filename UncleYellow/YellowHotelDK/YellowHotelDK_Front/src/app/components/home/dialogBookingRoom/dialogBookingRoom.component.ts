@@ -13,11 +13,16 @@ export class DialogBookingRoomComponent implements OnInit {
   phoneNumber:any
   descriptions:any
   kindOfRoom:any
+  checkInDate:any
+  roomNumber:any
+  kindOfRoomsl: any = "Kind Of Room"
   constructor(
     public dialogRef: MatDialogRef<DialogBookingRoomComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
   ) {
-
+    if(data.kindOfRoom){
+      data.kindOfRoom == this.kindOfRoom
+    }
   }
 
   ngOnInit(): void {
@@ -51,7 +56,9 @@ export class DialogBookingRoomComponent implements OnInit {
     this.email
     this.phoneNumber
     this.descriptions
-    this.kindOfRoom
+    this.data.kindOfRoom
+    this.checkInDate
+    this.roomNumber
     this.processResponse()
   }
 

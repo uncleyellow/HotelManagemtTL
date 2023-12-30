@@ -23,10 +23,11 @@ export class HomeComponent implements OnInit {
 
   }
 
-  bookingRoom() {
+  bookingRoom(item?:any) {
     const dialogRef = this.dialog.open(DialogBookingRoomComponent,{
       data:{
-        title: "Booking Room"
+        title: "Booking Room",
+        kindOfRoom: item
       }
     });
 
