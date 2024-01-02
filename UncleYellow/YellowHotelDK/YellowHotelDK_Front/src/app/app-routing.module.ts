@@ -4,6 +4,10 @@ import {AuthenticationComponent} from "./components/authentication/authenticatio
 import {SignupComponent} from "./components/signup/signup.component";
 import {HomeComponent} from "./components/home/home.component";
 import { AdminComponent } from './components/admin/admin/admin.component';
+import { BookingRoomManagementComponent } from './components/admin/admin/bookingRoomManagement/bookingRoomManagement.component';
+import { EmployeesManagementComponent } from './components/admin/admin/employees-management/employees-management.component';
+import { LetterContactComponent } from './components/admin/admin/letterContact/letterContact.component';
+import { UsersManagementComponent } from './components/admin/admin/users-management/users-management.component';
 
 
 const routes: Routes = [
@@ -16,7 +20,7 @@ const routes: Routes = [
     component:HomeComponent
   },
   {
-    path:"login",
+    path:"admin",
     component:AuthenticationComponent
   },
   {
@@ -24,8 +28,24 @@ const routes: Routes = [
     component:SignupComponent
   },
   {
-    path:"admin",
+    path:"adminManagement",
     component:AdminComponent
+  },
+  {
+    path:"bookingRoomManagement",
+    component:BookingRoomManagementComponent
+  },
+  {
+    path:"employeesManagement",
+    component:EmployeesManagementComponent
+  },
+  {
+    path:"letterManagement",
+    component:LetterContactComponent
+  },
+  {
+    path:"usersManagement",
+    component:UsersManagementComponent
   },
 ];
 

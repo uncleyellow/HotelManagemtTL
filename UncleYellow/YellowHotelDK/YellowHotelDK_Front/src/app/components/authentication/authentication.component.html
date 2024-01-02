@@ -1,8 +1,11 @@
 <!-- Section: Design Block -->
 <section class="">
   <!-- Jumbotron -->
-  <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%)">
+  <div class="px-4 py-5 px-md-5 text-center text-lg-start" style="background-color: hsl(0, 0%, 96%);margin-top: 0px;">
     <div class="container">
+      <div class="header-login">
+        <h1 class="my-5 display-3 fw-bold ls-tight" style="color: blue;">Admin Login</h1>
+      </div>
       <div class="row gx-lg-5 align-items-center">
         <div class="col-lg-6 mb-5 mb-lg-0">
           <div class="alert alert-danger fs-6 fw-semibold" *ngIf="errorMessage.length>0" [ngStyle]="{}">{{errorMessage}}</div>
@@ -39,7 +42,7 @@
         <div class="col-lg-6 mb-5 mb-lg-0">
           <h1 class="my-5 display-3 fw-bold ls-tight">
             Let's begin the adventure <br />
-            <span class="text-primary">with You Booking </span>
+            <span class="text-primary">with Yellow Hotel</span>
           </h1>
         </div>
       </div>

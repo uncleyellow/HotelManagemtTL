@@ -5,9 +5,9 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'letter-contact',
   templateUrl: './letterContact.component.html',
-  styleUrls: ['./letterContact.component.css']
+  styleUrls: ['./letterContact.component.css'],
 })
-export class DialogBookingRoomComponent implements OnInit {
+export class LetterContactComponent implements OnInit {
   name:any
   email:any
   phoneNumber:any
@@ -19,9 +19,11 @@ export class DialogBookingRoomComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.fetch()
+  }
+  fetch(){
 
   }
-
   processResponse() {
     Swal.fire({
       toast: true,

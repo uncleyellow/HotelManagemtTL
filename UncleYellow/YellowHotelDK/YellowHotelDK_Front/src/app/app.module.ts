@@ -17,6 +17,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 import { SignupComponent } from './components/signup/signup.component';
 import { DialogBookingRoomComponent } from './components/home/dialogBookingRoom/dialogBookingRoom.component';
+import { EmployeesManagementComponent } from './components/admin/admin/employees-management/employees-management.component';
+import { UsersManagementComponent } from './components/admin/admin/users-management/users-management.component';
+import { LetterContactComponent } from './components/admin/admin/letterContact/letterContact.component';
+import { AdminComponent } from './components/admin/admin/admin.component';
+import { BookingRoomManagementComponent } from './components/admin/admin/bookingRoomManagement/bookingRoomManagement.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +32,11 @@ import { DialogBookingRoomComponent } from './components/home/dialogBookingRoom/
     NavBarComponent,
     FooterComponent,
     DialogBookingRoomComponent,
+    AdminComponent,
+    BookingRoomManagementComponent,
+    EmployeesManagementComponent,
+    LetterContactComponent,
+    UsersManagementComponent
   ],
   imports: [
     BrowserModule,

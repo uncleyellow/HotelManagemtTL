@@ -4,6 +4,7 @@ import {AuthService} from "../../services/auth.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {JwtHelperService, JwtModule} from "@auth0/angular-jwt";
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-authentication',
@@ -27,9 +28,32 @@ export class AuthenticationComponent implements OnInit {
 
   onSubmit(){
     this.auth.login(this.username,this.password).then((res:any) =>{
-      debugger
       this.auth.isLoggedIn;
-      this.router.navigate(['/'])
+      this.processResponse()
+      this.router.navigate(['/adminManagement'])
     })
+  }
+
+  processResponse() {
+    debugger
+    Swal.fire({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      title: 'Sign In Success',
+      icon: 'success',
+    });
+    // Swal.fire({
+    //   toast: true,
+    //   position: 'top-end',
+    //   showConfirmButton: false,
+    //   timer: 3000,
+    //   timerProgressBar: true,
+    //   title: 'Booking Room Fail',
+    //   icon: 'error',
+    // });
+    // return
   }
 }
