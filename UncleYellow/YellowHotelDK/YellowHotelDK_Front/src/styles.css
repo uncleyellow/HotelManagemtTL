@@ -615,3 +615,6 @@ section
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.bg-color .mat-dialog-container{
+  background-color: #fff;
+}

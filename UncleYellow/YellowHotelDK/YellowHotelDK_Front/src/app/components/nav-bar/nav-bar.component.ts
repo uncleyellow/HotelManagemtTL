@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {Subscription} from "rxjs";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -10,26 +11,18 @@ import {Subscription} from "rxjs";
 export class NavBarComponent implements OnInit {
   isLoggedIn = false;
   user_name ="";
-  private isLoggedInSubscription!: Subscription;
-  private userName!: Subscription;
-  constructor(private authService: AuthService) {
+  constructor(private router:Router,private authService: AuthService) {
   }
 
   ngOnInit(): void {
-    this.isLoggedInSubscription = this.authService.isLoggedIn.subscribe(
-      (isLoggedIn) => {
-        this.isLoggedIn = isLoggedIn;
-      }
-    );
-    this.userName = this.authService.userLogged.subscribe(
-      (user) => {
-        this.user_name = user.toString();
-      }
-    );
+    this.isLoggedIn == this.authService.isLoggedIn;
   }
 
   logout() {
     this.authService.logout();
+    debugger
+    this.isLoggedIn == false
+    this.router.navigate(['/home'])
   }
 }
 

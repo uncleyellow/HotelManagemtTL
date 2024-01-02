@@ -1,3 +1,61 @@
+<!-- navbar  -->
+<!-- Header Start -->
+<div class="container-fluid bg-dark px-0" id="home">
+  <div class="row gx-0">
+    <div class="col-lg-3 bg-dark d-none d-lg-block">
+      <a href="index.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+        <h1 class="m-0 text-primary text-uppercase">Yellow Hotel</h1>
+      </a>
+    </div>
+    <div class="col-lg-9">
+      <div class="row gx-0 bg-white d-none d-lg-flex">
+        <div class="col-lg-7 px-5 text-start">
+          <div class="h-100 d-inline-flex align-items-center py-2 me-4">
+            <i class="fa fa-envelope text-primary me-2"></i>
+            <p class="mb-0">1951060783@e.tlu.edu.vn</p>
+          </div>
+          <div class="h-100 d-inline-flex align-items-center py-2">
+            <i class="fa fa-phone-alt text-primary me-2"></i>
+            <p class="mb-0">0985363602</p>
+          </div>
+        </div>
+        <div class="col-lg-5 px-5 text-end">
+          <div class="d-inline-flex align-items-center py-2">
+            <a class="me-3" href=""><i class="fab fa-facebook-f"></i></a>
+            <a class="me-3" href=""><i class="fab fa-twitter"></i></a>
+            <a class="me-3" href=""><i class="fab fa-linkedin-in"></i></a>
+            <!-- <div *ngIf="isLoggedIn==false" class="me-3" ><a [routerLink]="['signup']">Sign Up</a></div> -->
+          </div>
+        </div>
+      </div>
+      <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
+        <a href="index.html" class="navbar-brand d-block d-lg-none">
+          <h1 class="m-0 text-primary text-uppercase">Hotelier</h1>
+        </a>
+        <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+          <div class="navbar-nav mr-auto py-0">
+            <a (click)="scrollToDiv('home')" class="nav-item nav-link active">Home</a>
+            <a (click)="scrollToDiv('Contact Us')" class="nav-item nav-link active">Contact Us</a>
+            <a (click)="scrollToDiv('aboutUs')" class="nav-item nav-link">About Us</a>
+            <a (click)="scrollToDiv('Our Room')" class="nav-item nav-link">Our Room</a>
+            <a (click)="scrollToDiv('Our Services')" class="nav-item nav-link">Our Services</a>
+            <a (click)="scrollToDiv('Our Team')" class="nav-item nav-link">Our Team</a>
+            <a (click)="scrollToDiv('Contact')" class="nav-item nav-link">Contact</a>
+          </div>
+          <!-- <div>
+            <a [routerLink]="['login']" class="btn btn-primary rounded-0 py-4 px-md-5 d-none d-lg-block">Sign In Now<i class="fa fa-arrow-right ms-3"></i></a>
+          </div> -->
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+<!-- Header End -->
+<!-- end navbar  -->
+
 <!-- Carousel Start -->
 <div class="container-fluid p-0 mb-5">
   <div id="header-carousel" class="carousel slide" data-bs-ride="carousel">
@@ -33,7 +91,7 @@
     <button class="carousel-control-next" type="button" data-bs-target="#header-carousel"
             data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
+      <span class="visually-hidden" id="Contact Us">Next</span>
     </button>
   </div>
 </div>
@@ -54,17 +112,17 @@
               <div class="date" id="date1" data-target-input="nearest">
                 <!-- <input type="text" class="form-control datetimepicker-input"
                        placeholder="Check in" data-target="#date1" data-toggle="datetimepicker" /> -->
-                       <input type="text" class="form-control" placeholder="Name">
+                       <input type="text" class="form-control" placeholder="Name" [(ngModel)]="name">
               </div>
             </div>
             <div class="col-md-3">
               <div class="date" id="date2" data-target-input="nearest">
-                <input type="text" class="form-control" placeholder="Email">
+                <input type="text" class="form-control" placeholder="Email" [(ngModel)]="email">
                 <!-- <input type="text" class="form-control datetimepicker-input" placeholder="Check out" data-target="#date2" data-toggle="datetimepicker"/> -->
               </div>
             </div>
             <div class="col-md-3">
-              <input type="text" class="form-control" placeholder="Phone">
+              <input type="text" class="form-control" placeholder="Phone" [(ngModel)]="phone">
             </div>
             <div class="col-md-3">
               <!-- <select class="form-select">
@@ -73,12 +131,12 @@
                 <option value="2">Child 2</option>
                 <option value="3">Child 3</option>
               </select> -->
-              <input type="text" class="form-control" placeholder="Description">
+              <input type="text" class="form-control" placeholder="Description" [(ngModel)]="description">
             </div>
           </div>
         </div>
         <div class="col-md-2">
-          <button class="btn btn-primary w-100">Send</button>
+          <button class="btn btn-primary w-100" (click)="sendLetter()">Send</button>
         </div>
       </div>
     </div>
@@ -88,7 +146,7 @@
 
 
 <!-- About Start -->
-<div class="container-xxl py-5">
+<div class="container-xxl py-5" id="aboutUs">
   <div class="container">
     <div class="row g-5 align-items-center">
       <div class="col-lg-6">
@@ -149,7 +207,7 @@
 
 
 <!-- Room Start -->
-<div class="container-xxl py-5">
+<div class="container-xxl py-5" id="Our Room">
   <div class="container">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
       <h2 class="section-title text-center text-primary text-uppercase">Our Rooms</h2>
@@ -160,7 +218,7 @@
         <div class="room-item shadow rounded overflow-hidden">
           <div class="position-relative">
             <img class="img-fluid" src="assets/img/room-1.jpg" alt="">
-            <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$100/Night</small>
+            <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$100/Room/Night</small>
           </div>
           <div class="p-4 mt-2">
             <div class="d-flex justify-content-between mb-3">
@@ -174,7 +232,7 @@
               </div>
             </div>
             <div class="d-flex mb-3">
-              <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
+              <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>2 Bed</small>
               <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small>
               <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
             </div>
@@ -190,7 +248,7 @@
         <div class="room-item shadow rounded overflow-hidden">
           <div class="position-relative">
             <img class="img-fluid" src="assets/img/room-2.jpg" alt="">
-            <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$100/Night</small>
+            <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$200/Room/Night</small>
           </div>
           <div class="p-4 mt-2">
             <div class="d-flex justify-content-between mb-3">
@@ -220,7 +278,7 @@
         <div class="room-item shadow rounded overflow-hidden">
           <div class="position-relative">
             <img class="img-fluid" src="assets/img/room-3.jpg" alt="">
-            <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$100/Night</small>
+            <small class="position-absolute start-0 top-100 translate-middle-y bg-primary text-white rounded py-1 px-3 ms-4">$300/Room/Night</small>
           </div>
           <div class="p-4 mt-2">
             <div class="d-flex justify-content-between mb-3">
@@ -234,7 +292,7 @@
               </div>
             </div>
             <div class="d-flex mb-3">
-              <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>3 Bed</small>
+              <small class="border-end me-3 pe-3"><i class="fa fa-bed text-primary me-2"></i>4 Bed</small>
               <small class="border-end me-3 pe-3"><i class="fa fa-bath text-primary me-2"></i>2 Bath</small>
               <small><i class="fa fa-wifi text-primary me-2"></i>Wifi</small>
             </div>
@@ -253,7 +311,7 @@
 
 
 <!-- Service Start -->
-<div class="container-xxl py-5">
+<div class="container-xxl py-5" id="Our Services">
   <div class="container">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
       <h2 class="section-title text-center text-primary text-uppercase">Our Services</h2>
@@ -376,7 +434,7 @@
 
 
 <!-- Team Start -->
-<div class="container-xxl py-5">
+<div class="container-xxl py-5" id="Our Team">
   <div class="container">
     <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
       <h2 class="section-title text-center text-primary text-uppercase">Our Team</h2>
@@ -386,7 +444,7 @@
       <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
         <div class="rounded shadow overflow-hidden">
           <div class="position-relative">
-            <img class="img-fluid" src="assets/img/team-1.jpg" alt="">
+            <img class="img-fluid" src="assets/img/khanhnhata.jpg" alt="" style="height: 300px;width: 300px;">
             <div class="position-absolute start-50 top-100 translate-middle d-flex align-items-center">
               <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
               <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
@@ -394,8 +452,8 @@
             </div>
           </div>
           <div class="text-center p-4 mt-3">
-            <h5 class="fw-bold mb-0">Full Name</h5>
-            <small>Designation</small>
+            <h5 class="fw-bold mb-0">Dương Đình Khánh</h5>
+            <small>Chairperson</small>
           </div>
         </div>
       </div>
@@ -410,8 +468,8 @@
             </div>
           </div>
           <div class="text-center p-4 mt-3">
-            <h5 class="fw-bold mb-0">Full Name</h5>
-            <small>Designation</small>
+            <h5 class="fw-bold mb-0">Jonh Decay</h5>
+            <small>Secretary</small>
           </div>
         </div>
       </div>
@@ -426,8 +484,8 @@
             </div>
           </div>
           <div class="text-center p-4 mt-3">
-            <h5 class="fw-bold mb-0">Full Name</h5>
-            <small>Designation</small>
+            <h5 class="fw-bold mb-0">Big Boy</h5>
+            <small>Staff</small>
           </div>
         </div>
       </div>
@@ -442,8 +500,8 @@
             </div>
           </div>
           <div class="text-center p-4 mt-3">
-            <h5 class="fw-bold mb-0">Full Name</h5>
-            <small>Designation</small>
+            <h5 class="fw-bold mb-0">BigDaddy</h5>
+            <small>Receptionist</small>
           </div>
         </div>
       </div>
@@ -470,3 +528,79 @@
   </div>
 </div> -->
 <!-- Newsletter Start -->
+
+<!-- Footer Start -->
+<div class="container-fluid bg-dark text-light footer wow fadeIn" data-wow-delay="0.1s" id="Contact">
+  <div class="container pb-5">
+    <div class="row g-5">
+      <!-- <div class="col-md-6 col-lg-4">
+        <div class="bg-primary rounded p-4">
+          <a href="index.html"><h1 class="text-white text-uppercase mb-3">Hotelier</h1></a>
+          <p class="text-white mb-0">
+            Download <a class="text-dark fw-medium" href="https://htmlcodex.com/hotel-html-template-pro">Hotelier – Premium Version</a>, build a professional website for your hotel business and grab the attention of new visitors upon your site’s launch.
+          </p>
+        </div>
+      </div> -->
+      <div class="col-md-6 col-lg-6">
+        <h2 class="section-title text-start text-primary text-uppercase mb-4">Contact</h2>
+        <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Thuy Loi University</p>
+        <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>0985363602</p>
+        <p class="mb-2"><i class="fa fa-envelope me-3"></i>1951060783@e.tlu.edu.vn</p>
+        <div class="d-flex pt-2">
+          <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+          <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+          <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+          <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12">
+        <div class="row gy-5 g-4">
+          <div class="col-md-6">
+            <h2 class="section-title text-start text-primary text-uppercase mb-4">Company</h2>
+            <!-- <a (click)="scrollToDiv('home')" class="btn btn-link">Home</a> -->
+            <a (click)="scrollToDiv('Contact Us')"class="btn btn-link btn-footer">Contact Us</a>
+            <a (click)="scrollToDiv('aboutUs')" class="btn btn-link btn-footer">About Us</a>
+            <a (click)="scrollToDiv('Our Room')" class="btn btn-link btn-footer">Our Room</a>
+            <a (click)="scrollToDiv('Our Services')" class="btn btn-link btn-footer">Our Services</a>
+            <a (click)="scrollToDiv('Our Team')" class="btn btn-link btn-footer">Our Team</a>
+            <a (click)="scrollToDiv('Contact')" class="btn btn-link btn-footer">Contact</a>
+            <!-- <a class="btn btn-link" href="">About Us</a>
+            <a class="btn btn-link" href="">Contact Us</a>
+            <a class="btn btn-link" href="">Privacy Policy</a>
+            <a class="btn btn-link" href="">Terms & Condition</a>
+            <a class="btn btn-link" href="">Support</a> -->
+          </div>
+          <div class="col-md-6">
+            <h2 class="section-title text-start text-primary text-uppercase mb-4">Services</h2>
+            <a (click)="scrollToDiv('Our Services')" class="btn btn-link btn-footer">Food & Restaurant</a>
+            <a (click)="scrollToDiv('Our Services')" class="btn btn-link btn-footer">Spa & Fitness</a>
+            <a (click)="scrollToDiv('Our Services')" class="btn btn-link btn-footer">Sports & Gaming</a>
+            <a (click)="scrollToDiv('Our Services')" class="btn btn-link btn-footer">Event & Party</a>
+            <a (click)="scrollToDiv('Our Services')" class="btn btn-link btn-footer">GYM & Yoga</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="copyright">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+          &copy; <a class="border-bottom" href="#">Yellow Hotel</a>, All Right Reserved.
+
+          <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+          Designed By <a class="border-bottom" href="https://htmlcodex.com">Duong Dinh Khanh</a>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <div class="footer-menu">
+            <a href="">Home</a>
+            <a href="">Cookies</a>
+            <a href="">Help</a>
+            <a href="">FQAs</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Footer End -->

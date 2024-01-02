@@ -16,7 +16,8 @@ export class AuthenticationComponent implements OnInit {
   username:any
   password:any
   constructor(
-    private router:Router
+    private router:Router,
+    private auth:AuthService
     ) {
   }
 
@@ -25,8 +26,10 @@ export class AuthenticationComponent implements OnInit {
   }
 
   onSubmit(){
-    if(this.username && this.password){
-      this.router.navigate(['admin'])
-    }
+    this.auth.login(this.username,this.password).then((res:any) =>{
+      debugger
+      this.auth.isLoggedIn;
+      this.router.navigate(['/'])
+    })
   }
 }
