@@ -18,7 +18,7 @@ export class AdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.statusLink = 1
   }
   routerLink(item: any) {
     debugger
