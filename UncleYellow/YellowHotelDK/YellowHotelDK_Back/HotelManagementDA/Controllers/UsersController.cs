@@ -17,7 +17,7 @@ namespace HotelManagementDA.Controllers
         [HttpGet]
         public JsonResult Get()
         {
-            string query = "SELECT id, userName, passWord, role FROM Users";
+            string query = "SELECT id, userName, passWord, role, creatDate FROM Users";
             DataTable table = QuerryExtension.ExecuteQuery(query);
             return new JsonResult(table);
         }
@@ -25,7 +25,7 @@ namespace HotelManagementDA.Controllers
         public void Post(Users tutorial)
         {
             Guid id = Guid.NewGuid();
-            string query = $@"INSERT INTO [dbo].[Users]([id],[userName],[passWord],[role]) VALUES('{id}','{tutorial.userName}','{tutorial.passWord}','{tutorial.role}')";
+            string query = $@"INSERT INTO [dbo].[Users]([id],[userName],[passWord],[role],[creatDate]) VALUES('{id}','{tutorial.userName}','{tutorial.passWord}','{tutorial.role}','{tutorial.creatDate}')";
 
             QuerryExtension.ExecuteNonQuery(query);
         }
@@ -33,8 +33,8 @@ namespace HotelManagementDA.Controllers
         [HttpPut]
         public JsonResult Put(Users tutorial)
         {
-            string query = $@"UPDATE Tutorial
-                SET userName = '{tutorial.userName}', passWord = '{tutorial.passWord}', role = '{tutorial.role}'
+            string query = $@"UPDATE Users
+                SET userName = '{tutorial.userName}', passWord = '{tutorial.passWord}', role = '{tutorial.role}',creatDate = '{tutorial.creatDate}'
                 WHERE id = '{tutorial.id}'
             ";
 
@@ -69,6 +69,7 @@ namespace HotelManagementDA.Controllers
                 userName = table.Rows[0]["userName"].ToString(),
                 passWord = table.Rows[0]["passWord"].ToString(),
                 role = table.Rows[0]["role"].ToString(),
+                creatDate = DateTime.Parse(table.Rows[0]["creatDate"].ToString()),
             };
             return Ok(tutorial); // trả về đối tượng Tutorial thay vì đối tượng JsonResult
 
@@ -77,7 +78,7 @@ namespace HotelManagementDA.Controllers
         [HttpGet("search")]
         public IActionResult Search(string keyword)
         {
-            string query = $@"Select id, userName, passWord, role from Tutorial WHERE userName LIKE '%{keyword}%'";
+            string query = $@"Select id, userName, passWord, role, creatDate from Users WHERE userName LIKE '%{keyword}%'";
             List<Users> tutorials = new List<Users>();
 
             DataTable table = QuerryExtension.ExecuteQuery(query);
@@ -90,6 +91,7 @@ namespace HotelManagementDA.Controllers
                     userName = table.Rows[0]["userName"].ToString(),
                     passWord = table.Rows[0]["passWord"].ToString(),
                     role = table.Rows[0]["role"].ToString(),
+                    creatDate = DateTime.Parse(table.Rows[0]["creatDate"].ToString()),
                 });
             }
             return Ok(tutorials); // trả về đối tượng Tutorial thay vì đối tượng JsonResult

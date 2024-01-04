@@ -1,5 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogBookingRoomComponent } from 'src/app/components/home/dialogBookingRoom/dialogBookingRoom.component';
+import { RoomBookingService } from '../../../../services/room-booking.service';
+import { DialogDeleteRecordAnyComponent } from '../dialog-delete-record-any/dialog-delete-record-any.component';
 
 @Component({
   selector: 'app-booking-room-management',
@@ -7,7 +11,16 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
   styleUrls: ['./bookingRoomManagement.component.css'],
 })
 export class BookingRoomManagementComponent implements OnInit {
+  items: any;
+  page: number = 1;
+  count: number = 0;
+  tableSize: number = 5;
+  tableSizes: any = [3, 6, 9, 12];
+  date:any
+  searchParam:any
   constructor(
+    public roomBookingService: RoomBookingService,
+    public dialog: MatDialog,
 
   ){
 
@@ -17,7 +30,79 @@ export class BookingRoomManagementComponent implements OnInit {
   ngOnInit(): void {
     this.fetch()
   }
-  fetch(){
 
+  fetch(){
+    this.roomBookingService.getBookings().subscribe((rs:any) =>{
+      this.items = rs
+    })
+  }
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.fetch();
+  }
+  onTableSizeChange(event: any): void {
+    this.tableSize = event.target.value;
+    this.page = 1;
+    this.fetch();
+  }
+  edit(item: any) {
+    const dialogRef = this.dialog.open(DialogBookingRoomComponent, {
+      panelClass: 'bg-color', // Add your custom panel class
+      data: {
+        title: "Edit Booking Room",
+        item: item
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result:any) => {
+      this.fetch()
+    });
+  }
+  delete(item: any) {
+    const dialogRef = this.dialog.open(DialogDeleteRecordAnyComponent, {
+      panelClass: 'bg-color', // Add your custom panel class
+      data: {
+        title: "Delete Booking Room",
+        item: item
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(
+      (result:any) => {
+        this.fetch()
+      }
+    );
+  }
+  addUsers() {
+    const dialogRef = this.dialog.open(DialogBookingRoomComponent, {
+      panelClass: 'bg-color', // Add your custom panel class
+      data: {
+        title: "Add Booking Room",
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((result:any) => {
+      this.fetch()
+    });
+  }
+  search(keyword?: any){
+    debugger
+    if(!keyword){
+      this.fetch()
+    }
+    if(isNaN(keyword)){
+      debugger
+      this.roomBookingService.searchRooms(keyword)
+      .subscribe(users => {
+        this.items = users;
+      });
+    }
+    else{
+      debugger
+      this.roomBookingService.searchRoomsByPhone(keyword)
+      .subscribe(users => {
+        this.items = users;
+      });
+    }
   }
 }

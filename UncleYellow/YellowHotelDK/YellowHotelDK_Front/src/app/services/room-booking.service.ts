@@ -11,10 +11,35 @@ export class RoomBookingService {
   ) {
 
   }
+
   createBooking(booking:any) {
     return this.http.post(
       'https://localhost:7156/api/RoomBooking',
       booking
+    );
+  }
+
+  getBookings() {
+    return this.http.get<any>('https://localhost:7156/api/RoomBooking');
+  }
+  searchRooms(keyword: string) {
+    return this.http.get<any>(
+      `https://localhost:7156/api/RoomBooking/search`,
+      {
+        params: {
+          keyword
+        }
+      }
+    );
+  }
+  searchRoomsByPhone(keyword: string) {
+    return this.http.get<any>(
+      `https://localhost:7156/api/RoomBooking/searchByPhone`,
+      {
+        params: {
+          keyword
+        }
+      }
     );
   }
 }

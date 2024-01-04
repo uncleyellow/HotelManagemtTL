@@ -6,5 +6,6 @@
         public string? userName { get; set; }
         public string? passWord { get; set; }
         public string? role { get; set; }
+        public DateTime creatDate { get; set; }
     }
 }

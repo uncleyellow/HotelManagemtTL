@@ -19,6 +19,8 @@ export class DialogBookingRoomComponent implements OnInit {
   kindOfRoomsl: any = "Kind Of Room"
   totalPrice: any
   checkOutDate: any
+  isEdit:any = false
+  item: any = {};
   constructor(
     public dialogRef: MatDialogRef<DialogBookingRoomComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -26,6 +28,9 @@ export class DialogBookingRoomComponent implements OnInit {
   ) {
     if (data.kindOfRoom) {
       data.kindOfRoom == this.kindOfRoom
+    }
+    if(data.item){
+      this.isEdit = true
     }
   }
 
@@ -87,7 +92,7 @@ export class DialogBookingRoomComponent implements OnInit {
       });
       return
     }
-    if (!this.name || !this.email || !this.phoneNumber || !this.descriptions || !this.data.kindOfRoom || !this.checkInDate || !this.checkOutDate || !this.roomNumber) {
+    if (!this.item.name || !this.item.email || !this.item.phoneNumber || !this.item.descriptions || !this.data.kindOfRoom || !this.item.checkInDate || !this.item.checkOutDate || !this.item.roomNumber) {
       Swal.fire({
         toast: true,
         position: 'top-end',
@@ -101,15 +106,15 @@ export class DialogBookingRoomComponent implements OnInit {
     }
     else {
       const roomBooking = {
-        name: this.name,
-        email: this.email,
-        phoneNumber: this.phoneNumber,
+        name: this.data.item.name,
+        email: this.data.item.email,
+        phoneNumber: this.data.item.phoneNumber,
         kindOfRoom: this.data.kindOfRoom,
-        checkInDate: this.checkInDate,
-        checkOutDate: this.checkOutDate,
-        roomNumber: this.roomNumber,
-        price: this.totalPrice,
-        description: this.descriptions,
+        checkInDate: this.data.item.checkInDate,
+        checkOutDate: this.data.item.checkOutDate,
+        roomNumber: this.data.item.roomNumber,
+        price: this.data.item.totalPrice,
+        description: this.data.item.descriptions,
         status:1
       };
       this.roomBooking.createBooking(roomBooking).subscribe((rs: any) => {

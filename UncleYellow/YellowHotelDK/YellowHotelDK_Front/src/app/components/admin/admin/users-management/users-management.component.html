@@ -1,22 +1,22 @@
-
-<div class="">
+<div class="d-flex justify-content-between">
   <h1>Users Management</h1>
-  <button mat-raised-button style="color: #fff; background-color: blue;" (click)="addUsers()">Add User</button>
+  <button mat-raised-button style="color: #fff; background-color: blue;height: 40px;" (click)="addUsers()">Add User</button>
 </div>
-
-<div class="table-responsive">
+<input type="text" class="form-control" [(ngModel)]="searchParam" (input)="search(searchParam)" placeholder="Search User Name">
+<br>
+<div class="table-responsive wrapper">
   <table class="table table-radius table-fixed" style="border-radius: 15px solid black;">
-    <thead class="thead-dark">
+    <thead class="thead-dark" style="background-color:blue ;">
       <tr>
         <th scope="col">#</th>
-        <th scope="col" class="w-25">User Name</th>
-        <th scope="col" class="w-25">Password</th>
-        <th scope="col" class="w-25">Role</th>
-        <th scope="col" class="w-25">Action</th>
+        <th scope="col" class="w-25 p-3">User Name</th>
+        <th scope="col" class="p-3">Role</th>
+        <th scope="col" class="p-3">Creat Date</th>
+        <th scope="col" class="p-3">Action</th>
       </tr>
     </thead>
     <tbody>
-      <tr  *ngFor="
+      <tr *ngFor="
       let item of items
         | paginate
           : {
@@ -28,8 +28,8 @@
     ">
         <th scope="row">{{i + 1}}</th>
         <td>{{item.userName}}</td>
-        <td>{{item.passWord}}</td>
         <td>{{item.role}}</td>
+        <td>{{item.creatDate}}</td>
         <td>
           <button mat-raised-button style="color: #fff; background-color: blue;" (click)="edit(item)">Edit</button>
           <button mat-raised-button color="warn" (click)="delete(item)">Delete</button>
@@ -38,11 +38,7 @@
     </tbody>
   </table>
   <div class="d-flex justify-content-center">
-    <pagination-controls
-      previousLabel="Prev"
-      nextLabel="Next"
-      (pageChange)="onTableDataChange($event)"
-    >
+    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
     </pagination-controls>
   </div>
 </div>
