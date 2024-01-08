@@ -118,6 +118,7 @@ export class BookingRoomManagementComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe((result:any) => {
+        debugger
         if(result){
           this.fetch()
         }

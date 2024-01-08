@@ -33,7 +33,6 @@ export class DialogRoomStatusComponent implements OnInit {
     this.data.item.checkInDate = outputInDate
     this.data.item.checkOutDate = outputOutDate
 
-    this.data.item.status = this.data.status
   }
 
   ngOnInit(): void {
@@ -42,6 +41,8 @@ export class DialogRoomStatusComponent implements OnInit {
 
   save(item?: any) {
     debugger
+    this.data.item.status = this.data.status
+
     const user = {
       id: this.data.item.id,
       name: this.data.item.name,
@@ -55,9 +56,10 @@ export class DialogRoomStatusComponent implements OnInit {
       description:this.data.item.description,
       status:this.data.item.status,
     }
-    this.usersService.updateStatusRoom(user)
+    this.usersService.updateBooking(this.data.item.id,user)
       .subscribe((res: any) => {
         // handle response
+        debugger
         this.processResponse()
         this.dialogRef.close(res)
       });
@@ -66,14 +68,27 @@ export class DialogRoomStatusComponent implements OnInit {
     this.dialogRef.close()
   }
   processResponse() {
-    Swal.fire({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      title: 'Delete Sucess',
-      icon: 'success',
-    });
+    if(this.data.item.status == 1){
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        title: 'Comfront Sucess',
+        icon: 'success',
+      });
+    }
+    else{
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        title: 'Not Comfront Sucess',
+        icon: 'success',
+      });
+    }
   }
 }

@@ -42,8 +42,7 @@ export class RoomBookingService {
       }
     );
   }
-  updateStatusRoom(room:any) {
-    debugger
-    return this.http.put(`https://localhost:7156/api/RoomBooking`, room);
+  updateBooking(id: string, booking: any) {
+    return this.http.put(`https://localhost:7156/api/RoomBooking/${id}`, booking);
   }
 }

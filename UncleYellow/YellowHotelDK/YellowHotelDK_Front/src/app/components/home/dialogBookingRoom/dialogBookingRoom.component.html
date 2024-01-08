@@ -5,31 +5,31 @@
 <div mat-dialog-content>
   <div class="row">
     <div class="col-7">
-      <input class="form-control" type="text" [(ngModel)]="data.item.name" placeholder="Name">
+      <input class="form-control" type="text" [(ngModel)]="item.name" placeholder="Name">
     </div>
     <div class="col-5">
-      <input class="form-control" type="tel" [(ngModel)]="data.item.phoneNumber" placeholder="Phone Number">
+      <input class="form-control" type="tel" [(ngModel)]="item.phoneNumber" placeholder="Phone Number">
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <input class="form-control" type="email" [(ngModel)]="data.item.email" placeholder="Email">
+      <input class="form-control" type="email" [(ngModel)]="item.email" placeholder="Email">
     </div>
   </div>
   <div class="row">
     <div class="col-6">
       <label class="label-dlg">Check In Date</label>
-      <input class="form-control" type="datetime-local" [(ngModel)]="data.item.checkInDate">
+      <input class="form-control" type="datetime-local" [(ngModel)]="item.checkInDate">
     </div>
     <div class="col-6">
       <label class="label-dlg">Check Out Date</label>
-      <input class="form-control" type="datetime-local" [(ngModel)]="data.item.checkOutDate">
+      <input class="form-control" type="datetime-local" [(ngModel)]="item.checkOutDate">
     </div>
   </div>
   <div class="row">
     <div class="col-12">
       <label class="label-dlg">Kind Of Room</label>
-      <select class="form-select" [(ngModel)]="data.kindOfRoom">
+      <select class="form-select" [(ngModel)]="item.kindOfRoom">
         <!-- <option [selected]="kindOfRoomsl" [disabled]>Kind Of Room</option> -->
         <option value="Junior Suite">Junior Suite</option>
         <option value="Executive Suite">Executive Suite</option>
@@ -39,7 +39,7 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <input class="form-control" type="number" [(ngModel)]="data.item.roomNumber" (input)="onCheckInDateChange()" min="0"
+      <input class="form-control" type="number" [(ngModel)]="item.roomNumber" (input)="onCheckInDateChange()" min="0"
         placeholder="Room Number">
     </div>
   </div>
@@ -47,12 +47,12 @@
   <div class="row">
     <div class="col-12">
       <textarea class="form-control" id="exampleFormControlTextarea1" rows="2" placeholder="Description"
-        [(ngModel)]="data.item.descriptions"></textarea>
+        [(ngModel)]="item.descriptions"></textarea>
     </div>
   </div>
   <div class="row">
     <div class="col-12">
-      <input class="form-control" type="tel" [(ngModel)]="data.item.totalPrice" placeholder="Total Price" [disabled]="true">
+      <input class="form-control" (input)="onCheckInDateChange()" type="tel" [(ngModel)]="item.totalPrice" placeholder="Total Price" [disabled]="true">
     </div>
   </div>
 </div>

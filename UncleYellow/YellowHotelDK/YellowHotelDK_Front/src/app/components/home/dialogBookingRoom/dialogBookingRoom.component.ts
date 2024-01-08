@@ -30,12 +30,14 @@ export class DialogBookingRoomComponent implements OnInit {
       data.kindOfRoom == this.kindOfRoom
     }
     if(data.item){
+      debugger
+      this.item = this.data.item
       this.isEdit = true
     }
   }
 
   ngOnInit(): void {
-
+    debugger
   }
 
   processResponse() {
@@ -60,22 +62,23 @@ export class DialogBookingRoomComponent implements OnInit {
     // return
   }
   onCheckInDateChange(){
-    const dateIn = new Date(this.checkInDate);
-    const dateOut = new Date(this.checkOutDate);
+    debugger
+    const dateIn = new Date(this.item.checkInDate);
+    const dateOut = new Date(this.item.checkOutDate);
 
     // Tính số miliseconds giữa 2 ngày
     const diffTime = dateOut.getTime() - dateIn.getTime();
 
     // Chuyển sang số ngày
     const diffDays = Math.ceil(diffTime / (1000 * 3600 * 24));
-    if(this.data.kindOfRoom == 'Junior Suite'){
-      this.totalPrice = diffDays * 100 * this.roomNumber
+    if(this.item.kindOfRoom == 'Junior Suite'){
+      this.item.totalPrice = diffDays * 100 * this.item.roomNumber
     }
-    if(this.data.kindOfRoom == 'Executive Suite'){
-      this.totalPrice = diffDays * 200 * this.roomNumber
+    if(this.item.kindOfRoom == 'Executive Suite'){
+      this.item.totalPrice = diffDays * 200 * this.item.roomNumber
     }
-    if(this.data.kindOfRoom == 'Super Deluxe'){
-      this.totalPrice = diffDays * 300 * this.roomNumber
+    if(this.item.kindOfRoom == 'Super Deluxe'){
+      this.item.totalPrice = diffDays * 300 * this.item.roomNumber
     }
   }
   save() {
@@ -92,7 +95,7 @@ export class DialogBookingRoomComponent implements OnInit {
       });
       return
     }
-    if (!this.item.name || !this.item.email || !this.item.phoneNumber || !this.item.descriptions || !this.data.kindOfRoom || !this.item.checkInDate || !this.item.checkOutDate || !this.item.roomNumber) {
+    if (!this.item.name || !this.item.email || !this.item.phoneNumber || !this.item.descriptions || !this.item.kindOfRoom || !this.item.checkInDate || !this.item.checkOutDate || !this.item.roomNumber) {
       Swal.fire({
         toast: true,
         position: 'top-end',
@@ -105,22 +108,36 @@ export class DialogBookingRoomComponent implements OnInit {
       return
     }
     else {
+      debugger
       const roomBooking = {
-        name: this.data.item.name,
-        email: this.data.item.email,
-        phoneNumber: this.data.item.phoneNumber,
-        kindOfRoom: this.data.kindOfRoom,
-        checkInDate: this.data.item.checkInDate,
-        checkOutDate: this.data.item.checkOutDate,
-        roomNumber: this.data.item.roomNumber,
-        price: this.data.item.totalPrice,
-        description: this.data.item.descriptions,
+        name: this.item.name,
+        email: this.item.email,
+        phoneNumber: this.item.phoneNumber,
+        kindOfRoom: this.kindOfRoom,
+        checkInDate: this.item.checkInDate,
+        checkOutDate: this.item.checkOutDate,
+        roomNumber: this.item.roomNumber,
+        price: this.item.totalPrice,
+        description: this.item.descriptions,
         status:1
       };
-      this.roomBooking.createBooking(roomBooking).subscribe((rs: any) => {
-        this.processResponse()
-        return this.dialogRef.close()
-      });
+      if(this.isEdit){
+        debugger
+        this.roomBooking.updateBooking(this.item.id,roomBooking)
+        .subscribe((res: any) => {
+          // handle response
+          debugger
+          this.processResponse()
+          this.dialogRef.close(res)
+        });
+      }
+      else{
+        debugger
+        this.roomBooking.createBooking(roomBooking).subscribe((rs: any) => {
+          this.processResponse()
+          return this.dialogRef.close()
+        });
+      }
     }
   }
 
