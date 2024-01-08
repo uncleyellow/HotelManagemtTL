@@ -15,14 +15,14 @@ namespace HotelManagementDA.Controllers
             _configuration = configuration;
         }
         [HttpGet]
-        public JsonResult Get()
+        public JsonResult GetRoomBooking()
         {
             string query = "SELECT id, name, email, phoneNumber, checkInDate, checkOutDate, kindOfRoom, roomNumber, price, description, status FROM roomBooking";
             DataTable table = QuerryExtension.ExecuteQuery(query);
             return new JsonResult(table);
         }
         [HttpPost]
-        public void Post(RoomBooking tutorial)
+        public void PostRoomBooking(RoomBooking tutorial)
         {
             Guid id = Guid.NewGuid();
             string query = $@"INSERT INTO [dbo].[roomBooking]([id],[name],[email],[phoneNumber],[checkInDate],[checkOutDate],[kindOfRoom],[roomNumber],[price],[description],[status]) VALUES('{id}','{tutorial.name}','{tutorial.email}','{tutorial.phoneNumber}','{tutorial.checkInDate}','{tutorial.checkOutDate}','{tutorial.kindOfRoom}','{tutorial.roomNumber}','{tutorial.price}','{tutorial.description}','{tutorial.status}')";
@@ -30,33 +30,34 @@ namespace HotelManagementDA.Controllers
             QuerryExtension.ExecuteNonQuery(query);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public JsonResult Put(RoomBooking tutorial)
         {
             string query = $@"UPDATE roomBooking
-                SET name = '{tutorial.name}', email = '{tutorial.email}', phoneNumber = '{tutorial.phoneNumber}', checkInDate = '{tutorial.checkInDate}', checkOutDate = '{tutorial.checkOutDate}', kindOfRoom = '{tutorial.kindOfRoom}', roomNumber = '{tutorial.roomNumber}', kindOfRoom = '{tutorial.kindOfRoom}', description = '{tutorial.description}', status = '{tutorial.status}', 'price = '{tutorial.price}''
+                SET name = '{tutorial.name}', email = '{tutorial.email}', phoneNumber = '{tutorial.phoneNumber}',checkInDate = '{tutorial.checkInDate}',checkOutDate = '{tutorial.checkOutDate}',kindOfRoom = '{tutorial.kindOfRoom}',roomNumber = '{tutorial.roomNumber}',price = '{tutorial.price}',description = '{tutorial.description}',status = '{tutorial.status}'
+                WHERE id = '{tutorial.id}'
             ";
 
             QuerryExtension.ExecuteNonQuery(query);
             return new JsonResult("Cập nhập Thành Công!");
         }
         [HttpDelete("{id}")]
-        public JsonResult Delete(Guid id)
+        public JsonResult DeleteRoomBooking(Guid id)
         {
             string query = $@"DELETE FROM [dbo].[roomBooking] WHERE [id] = '{id}'";
             QuerryExtension.ExecuteNonQuery(query);
             return new JsonResult("Xoá Thành Công!");
         }
         [HttpDelete]
-        public JsonResult DeleteAll()
+        public JsonResult DeleteAllRoomBooking()
         {
             string query = $@"DELETE FROM [dbo].[roomBooking]  ";
-            QuerryExtension.ExecuteNonQuery(query);
+            QuerryExtension.ExecuteQuery(query);
             return new JsonResult("Xoá Thành Công Tất Cả!");
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetById(Guid id)
+        public IActionResult GetByIdRoomBooking(Guid id)
         {
             string query = $@"Select id, name, email, phoneNumber, checkInDate,checkOutDate, kindOfRoom, roomNumber, description, status, price from roomBooking WHERE id = '{id}'";
             DataTable table = QuerryExtension.ExecuteQuery(query);
@@ -68,8 +69,8 @@ namespace HotelManagementDA.Controllers
                 name = table.Rows[0]["name"].ToString(),
                 email = table.Rows[0]["email"].ToString(),
                 phoneNumber = table.Rows[0]["phoneNumber"].ToString(),
-                checkInDate = DateTime.Parse(table.Rows[0]["checkInDate"].ToString()),
-                checkOutDate = DateTime.Parse(table.Rows[0]["checkOutDate"].ToString()),
+                checkInDate = table.Rows[0]["checkInDate"].ToString(),
+                checkOutDate = table.Rows[0]["checkOutDate"].ToString(),
                 kindOfRoom = table.Rows[0]["kindOfRoom"].ToString(),
                 roomNumber = table.Rows[0]["roomNumber"].ToString(),
                 description = table.Rows[0]["description"].ToString(),

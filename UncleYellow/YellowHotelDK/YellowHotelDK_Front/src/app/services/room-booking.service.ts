@@ -42,4 +42,8 @@ export class RoomBookingService {
       }
     );
   }
+  updateStatusRoom(room:any) {
+    debugger
+    return this.http.put(`https://localhost:7156/api/RoomBooking`, room);
+  }
 }

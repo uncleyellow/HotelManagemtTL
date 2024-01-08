@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogBookingRoomComponent } from 'src/app/components/home/dialogBookingRoom/dialogBookingRoom.component';
 import { RoomBookingService } from '../../../../services/room-booking.service';
 import { DialogDeleteRecordAnyComponent } from '../dialog-delete-record-any/dialog-delete-record-any.component';
+import { DialogRoomStatusComponent } from './dialog-room-status/dialog-room-status.component';
 
 @Component({
   selector: 'app-booking-room-management',
@@ -102,6 +103,40 @@ export class BookingRoomManagementComponent implements OnInit {
       this.roomBookingService.searchRoomsByPhone(keyword)
       .subscribe(users => {
         this.items = users;
+      });
+    }
+  }
+  status(item:any,status:any){
+    if(status == 1){
+      const dialogRef = this.dialog.open(DialogRoomStatusComponent, {
+        panelClass: 'bg-color', // Add your custom panel class
+        data: {
+          title: "Comfront Booking Room",
+          item: item,
+          status : 1
+        }
+      });
+
+      dialogRef.afterClosed().subscribe((result:any) => {
+        if(result){
+          this.fetch()
+        }
+      });
+    }
+    else{
+      const dialogRef = this.dialog.open(DialogRoomStatusComponent, {
+        panelClass: 'bg-color', // Add your custom panel class
+        data: {
+          title: "Decline Booking Room",
+          item: item,
+          status : 2
+        }
+      });
+
+      dialogRef.afterClosed().subscribe((result:any) => {
+        if(result){
+          this.fetch()
+        }
       });
     }
   }

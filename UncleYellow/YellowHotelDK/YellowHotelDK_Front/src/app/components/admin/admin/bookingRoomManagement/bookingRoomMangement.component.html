@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between">
   <h1>Users Management</h1>
-  <button mat-raised-button style="color: #fff; background-color: blue;height: 40px;" (click)="addUsers()">Add Booking Room</button>
+  <button mat-raised-button style="color: #fff; background-color: blue;height: 40px;" (click)="addUsers()">Booking Room</button>
 </div>
 <input type="text" class="form-control" [(ngModel)]="searchParam" (input)="search(searchParam)" placeholder="Search Booking Room By Name Or Phone Number">
 <br>
@@ -11,12 +11,15 @@
         <th scope="col">#</th>
         <th scope="col" class="p-3">Name</th>
         <th scope="col" class="p-3">Phone Number</th>
-        <th scope="col" class="p-3">Check In Date</th>
-        <th scope="col" class="p-3">Check Out Date</th>
+        <th scope="col" class="p-3">Check In</th>
+        <th scope="col" class="p-3">Check Out</th>
         <th scope="col" class="p-3">Kind Of Room</th>
-        <th scope="col" class="p-3">Room Number</th>
-        <th scope="col" class="p-3">Total Price</th>
-        <th scope="col" class="p-3">Description</th>
+        <th scope="col" class="p-3">Number</th>
+        <th scope="col" class="p-3">Total</th>
+        <!-- <th scope="col" class="p-3">Description</th> -->
+        <th scope="col" class="p-3">Status</th>
+        <th scope="col" class="p-3">Status</th>
+
         <th scope="col" class="p-3">Action</th>
       </tr>
     </thead>
@@ -38,8 +41,17 @@
         <td>{{item.checkOutDate}}</td>
         <td>{{item.kindOfRoom}}</td>
         <td>{{item.roomNumber}}</td>
-        <td>{{item.price}}</td>
-        <td>{{item.description}}</td>
+        <td>{{item.price}}$</td>
+        <!-- <td>{{item.description}}</td> -->
+        <td >
+          <div class="" *ngIf="item.status == 1">
+            <button mat-raised-button style="color: #fff; background-color: red;" (click)="status(item, '2')">Not Comfront</button>
+          </div>
+          <div class="" *ngIf="item.status == 2">
+            <button mat-raised-button style="color: #fff; background-color: rgb(7, 255, 7);" (click)="status(item, '1')">Comfront</button>
+          </div>
+        </td>
+        <td>{{item.status}}$</td>
         <td>
           <button mat-raised-button style="color: #fff; background-color: blue;" (click)="edit(item)">Edit</button>
           <button mat-raised-button color="warn" (click)="delete(item)">Delete</button>

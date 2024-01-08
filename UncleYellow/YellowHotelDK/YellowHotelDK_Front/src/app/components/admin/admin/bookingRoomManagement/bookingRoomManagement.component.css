@@ -40,9 +40,9 @@ tbody tr:hover {
   background-color: #e9ecef;
   border-color: #dee2e6;
 }
-button {
+/* button {
   margin-left: 5px;
-}
+} */
 /* Mở rộng các cột */
 th, td {
 }

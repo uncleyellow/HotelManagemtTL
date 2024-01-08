@@ -24,6 +24,7 @@ import { AdminComponent } from './components/admin/admin/admin.component';
 import { BookingRoomManagementComponent } from './components/admin/admin/bookingRoomManagement/bookingRoomManagement.component';
 import { DialogEditUsersComponent } from './components/admin/admin/users-management/dialog-edit-users/dialog-edit-users.component';
 import { DialogDeleteRecordAnyComponent } from './components/admin/admin/dialog-delete-record-any/dialog-delete-record-any.component';
+import { DialogRoomStatusComponent } from './components/admin/admin/bookingRoomManagement/dialog-room-status/dialog-room-status.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { DialogDeleteRecordAnyComponent } from './components/admin/admin/dialog-
     LetterContactComponent,
     UsersManagementComponent,
     DialogEditUsersComponent,
-    DialogDeleteRecordAnyComponent
+    DialogDeleteRecordAnyComponent,
+    DialogRoomStatusComponent
   ],
   imports: [
     BrowserModule,
