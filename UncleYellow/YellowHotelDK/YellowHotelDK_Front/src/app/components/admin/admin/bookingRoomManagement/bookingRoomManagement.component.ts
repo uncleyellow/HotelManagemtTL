@@ -63,6 +63,7 @@ export class BookingRoomManagementComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogDeleteRecordAnyComponent, {
       panelClass: 'bg-color', // Add your custom panel class
       data: {
+        deleteRoom:true,
         title: "Delete Booking Room",
         item: item
       }
@@ -87,21 +88,20 @@ export class BookingRoomManagementComponent implements OnInit {
     });
   }
   search(keyword?: any){
-    debugger
     if(!keyword){
       this.fetch()
     }
     if(isNaN(keyword)){
-      debugger
       this.roomBookingService.searchRooms(keyword)
       .subscribe(users => {
+        debugger
         this.items = users;
       });
     }
     else{
-      debugger
       this.roomBookingService.searchRoomsByPhone(keyword)
       .subscribe(users => {
+        debugger
         this.items = users;
       });
     }
@@ -111,7 +111,7 @@ export class BookingRoomManagementComponent implements OnInit {
       const dialogRef = this.dialog.open(DialogRoomStatusComponent, {
         panelClass: 'bg-color', // Add your custom panel class
         data: {
-          title: "Comfront Booking Room",
+          title: "Decline Booking Room",
           item: item,
           status : 1
         }
@@ -128,7 +128,7 @@ export class BookingRoomManagementComponent implements OnInit {
       const dialogRef = this.dialog.open(DialogRoomStatusComponent, {
         panelClass: 'bg-color', // Add your custom panel class
         data: {
-          title: "Decline Booking Room",
+          title: "Comfront Booking Room",
           item: item,
           status : 2
         }

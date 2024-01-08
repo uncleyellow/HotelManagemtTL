@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { RoomBookingService } from '../../../services/room-booking.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'dialog-booking-room',
@@ -12,14 +13,14 @@ export class DialogBookingRoomComponent implements OnInit {
   name: any
   email: any
   phoneNumber: any
-  descriptions: any
+  description: any
   kindOfRoom: any
   checkInDate: any
   roomNumber: any
   kindOfRoomsl: any = "Kind Of Room"
   totalPrice: any
   checkOutDate: any
-  isEdit:any = false
+  isEdit: any = false
   item: any = {};
   constructor(
     public dialogRef: MatDialogRef<DialogBookingRoomComponent>,
@@ -27,17 +28,25 @@ export class DialogBookingRoomComponent implements OnInit {
     public roomBooking: RoomBookingService
   ) {
     if (data.kindOfRoom) {
-      data.kindOfRoom == this.kindOfRoom
+      // data.kindOfRoom == this.kindOfRoom
+      this.item.kindOfRoom = data.kindOfRoom
     }
-    if(data.item){
+    if (data.item) {
       debugger
-      this.item = this.data.item
+      // Parse date string
+      const momentInDate = moment(this.data.item.checkInDate, 'DD/MM/YYYY hh:mm:ss a');
+      const momentOutDate = moment(this.data.item.checkOutDate, 'DD/MM/YYYY hh:mm:ss a');
+      // Format to ISO string
+      this.data.item.checkInDate = momentInDate.format('YYYY-MM-DD[T]HH:mm')
+      this.data.item.checkOutDate= momentOutDate.format('YYYY-MM-DD[T]HH:mm')
+      // this.kindOfRoom = this.data.item.kindOfRoom
       this.isEdit = true
+      this.item = this.data.item
     }
   }
 
   ngOnInit(): void {
-    debugger
+
   }
 
   processResponse() {
@@ -61,8 +70,9 @@ export class DialogBookingRoomComponent implements OnInit {
     // });
     // return
   }
-  onCheckInDateChange(){
+  onCheckInDateChange() {
     debugger
+    // this.item.kindOfRoom = this.kindOfRoom
     const dateIn = new Date(this.item.checkInDate);
     const dateOut = new Date(this.item.checkOutDate);
 
@@ -71,14 +81,14 @@ export class DialogBookingRoomComponent implements OnInit {
 
     // Chuyển sang số ngày
     const diffDays = Math.ceil(diffTime / (1000 * 3600 * 24));
-    if(this.item.kindOfRoom == 'Junior Suite'){
-      this.item.totalPrice = diffDays * 100 * this.item.roomNumber
+    if (this.item.kindOfRoom == 'Junior Suite') {
+      this.item.price = diffDays * 100 * this.item.roomNumber
     }
-    if(this.item.kindOfRoom == 'Executive Suite'){
-      this.item.totalPrice = diffDays * 200 * this.item.roomNumber
+    if (this.item.kindOfRoom == 'Executive Suite') {
+      this.item.price = diffDays * 200 * this.item.roomNumber
     }
-    if(this.item.kindOfRoom == 'Super Deluxe'){
-      this.item.totalPrice = diffDays * 300 * this.item.roomNumber
+    if (this.item.kindOfRoom == 'Super Deluxe') {
+      this.item.price = diffDays * 300 * this.item.roomNumber
     }
   }
   save() {
@@ -95,7 +105,7 @@ export class DialogBookingRoomComponent implements OnInit {
       });
       return
     }
-    if (!this.item.name || !this.item.email || !this.item.phoneNumber || !this.item.descriptions || !this.item.kindOfRoom || !this.item.checkInDate || !this.item.checkOutDate || !this.item.roomNumber) {
+    if (!this.item.name || !this.item.email || !this.item.phoneNumber || !this.item.description || !this.item.kindOfRoom || !this.item.checkInDate || !this.item.checkOutDate || !this.item.roomNumber) {
       Swal.fire({
         toast: true,
         position: 'top-end',
@@ -113,25 +123,25 @@ export class DialogBookingRoomComponent implements OnInit {
         name: this.item.name,
         email: this.item.email,
         phoneNumber: this.item.phoneNumber,
-        kindOfRoom: this.kindOfRoom,
+        kindOfRoom: this.item.kindOfRoom,
         checkInDate: this.item.checkInDate,
         checkOutDate: this.item.checkOutDate,
         roomNumber: this.item.roomNumber,
-        price: this.item.totalPrice,
-        description: this.item.descriptions,
-        status:1
+        price: this.item.price,
+        description: this.item.description,
+        status: 1
       };
-      if(this.isEdit){
+      if (this.isEdit) {
         debugger
-        this.roomBooking.updateBooking(this.item.id,roomBooking)
-        .subscribe((res: any) => {
-          // handle response
-          debugger
-          this.processResponse()
-          this.dialogRef.close(res)
-        });
+        this.roomBooking.updateBooking(this.item.id, roomBooking)
+          .subscribe((res: any) => {
+            // handle response
+            debugger
+            this.processResponse()
+            this.dialogRef.close(res)
+          });
       }
-      else{
+      else {
         debugger
         this.roomBooking.createBooking(roomBooking).subscribe((rs: any) => {
           this.processResponse()

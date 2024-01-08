@@ -80,7 +80,7 @@ namespace HotelManagementDA.Controllers
         [HttpGet("search")]
         public IActionResult Search(string keyword)
         {
-            string query = $@"Select id, name, email, phoneNumber, address, workingDayStart, role from employees letter name LIKE '%{keyword}%'";
+            string query = $@"Select id, name, email, phoneNumber, address, workingDayStart, role from employees WHERE name LIKE '%{keyword}%'";
             List<Employees> tutorials = new List<Employees>();
 
             DataTable table = QuerryExtension.ExecuteQuery(query);

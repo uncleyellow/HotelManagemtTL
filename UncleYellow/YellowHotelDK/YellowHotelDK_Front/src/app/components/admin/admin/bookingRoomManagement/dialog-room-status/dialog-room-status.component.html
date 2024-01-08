@@ -11,7 +11,7 @@
   </div>
 </div>
 <div mat-dialog-actions class="justify-center flex">
-  <button mat-raised-button style="color: #fff; background-color: blue;" (click)="save('Comfront')">Comfront</button>
-  <!-- <button mat-raised-button style="color: #fff; background-color: rgb(255, 0, 72);" (click)="save('Decline')">Decline</button> -->
+  <button mat-raised-button *ngIf="data.item.status == 1" style="color: #fff; background-color: blue;" (click)="save('Comfront')">Comfront</button>
+  <button mat-raised-button *ngIf="data.item.status == 2" style="color: #fff; background-color: rgb(255, 0, 72);" (click)="save('Decline')">Decline</button>
   <button mat-raised-button color="warn" (click)="cancel()">Cancel</button>
 </div>

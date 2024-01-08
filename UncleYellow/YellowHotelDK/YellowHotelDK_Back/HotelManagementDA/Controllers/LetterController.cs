@@ -35,7 +35,7 @@ namespace HotelManagementDA.Controllers
         public JsonResult Put(Letter tutorial)
         {
             string query = $@"UPDATE letter
-                SET name = '{tutorial.name}', email = '{tutorial.email}', description = '{tutorial.description}', description = '{tutorial.sentDate}'
+                SET name = '{tutorial.name}', email = '{tutorial.email}', description = '{tutorial.description}', sentDate = '{tutorial.sentDate}'
                 WHERE id = '{tutorial.id}'
             ";
 
@@ -79,7 +79,7 @@ namespace HotelManagementDA.Controllers
         [HttpGet("search")]
         public IActionResult Search(string keyword)
         {
-            string query = $@"Select id, name, email, description from Tutorial letter name LIKE '%{keyword}%'";
+            string query = $@"Select id, name, email, description,sentDate from letter WHERE name LIKE '%{keyword}%'";
             List<Letter> tutorials = new List<Letter>();
 
             DataTable table = QuerryExtension.ExecuteQuery(query);
@@ -89,14 +89,16 @@ namespace HotelManagementDA.Controllers
                 tutorials.Add(new Letter()
                 {
                     id = Guid.Parse(table.Rows[0]["id"].ToString()),
-                    name = table.Rows[0]["userName"].ToString(),
-                    email = table.Rows[0]["passWord"].ToString(),
-                    description = table.Rows[0]["role"].ToString(),
+                    name = table.Rows[0]["name"].ToString(),
+                    email = table.Rows[0]["email"].ToString(),
+                    description = table.Rows[0]["description"].ToString(),
                     sentDate = DateTime.Parse(table.Rows[0]["sentDate"].ToString()),
                 });
             }
             return Ok(tutorials); // trả về đối tượng Tutorial thay vì đối tượng JsonResult
 
         }
+
+
     }
 }

@@ -84,30 +84,27 @@ namespace HotelManagementDA.Controllers
         [HttpGet("search")]
         public IActionResult Search(string keyword)
         {
-            string query = $@"Select id, name, email, phoneNumber, checkInDate,checkOutDate, kindOfRoom, roomNumber, price,description, status, price from roomBooking WHERE name LIKE '%{keyword}%'";
+            string query = $@"Select DISTINCT id, name, email, phoneNumber, checkInDate,checkOutDate, kindOfRoom, roomNumber, price,description, status, price from roomBooking WHERE name LIKE '%{keyword}%'";
             List<RoomBooking> tutorials = new List<RoomBooking>();
 
             DataTable table = QuerryExtension.ExecuteQuery(query);
             if (table.Rows.Count < 0) return NotFound();
-            foreach (DataRow row in table.Rows)
-            {
-                tutorials.Add(new RoomBooking()
-                {
-                    id = Guid.Parse(table.Rows[0]["id"].ToString()),
-                    name = table.Rows[0]["name"].ToString(),
-                    email = table.Rows[0]["email"].ToString(),
-                    phoneNumber = table.Rows[0]["phoneNumber"].ToString(),
-                    checkInDate = DateTime.Parse(table.Rows[0]["checkInDate"].ToString()),
-                    checkOutDate = DateTime.Parse(table.Rows[0]["checkOutDate"].ToString()),
-                    kindOfRoom = table.Rows[0]["kindOfRoom"].ToString(),
-                    roomNumber = table.Rows[0]["roomNumber"].ToString(),
-                    price = table.Rows[0]["price"].ToString(),
-                    description = table.Rows[0]["description"].ToString(),
-                    status = table.Rows[0]["status"].ToString(),
-                });
-            }
-            return Ok(tutorials); // trả về đối tượng Tutorial thay vì đối tượng JsonResult
 
+            RoomBooking tutorial = new RoomBooking()
+            {
+                id = Guid.Parse(table.Rows[0]["id"].ToString()),
+                name = table.Rows[0]["name"].ToString(),
+                email = table.Rows[0]["email"].ToString(),
+                phoneNumber = table.Rows[0]["phoneNumber"].ToString(),
+                checkInDate = DateTime.Parse(table.Rows[0]["checkInDate"].ToString()),
+                checkOutDate = DateTime.Parse(table.Rows[0]["checkOutDate"].ToString()),
+                kindOfRoom = table.Rows[0]["kindOfRoom"].ToString(),
+                roomNumber = table.Rows[0]["roomNumber"].ToString(),
+                description = table.Rows[0]["description"].ToString(),
+                status = table.Rows[0]["status"].ToString(),
+                price = table.Rows[0]["price"].ToString(),
+            };
+            return Ok(tutorial); // trả về đối tượng Tutorial thay vì đối tượng JsonResult
         }
         [HttpGet("searchByPhone")]
         public IActionResult SearchByPhone(string keyword)

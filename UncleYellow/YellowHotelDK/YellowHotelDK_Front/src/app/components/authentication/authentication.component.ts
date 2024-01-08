@@ -32,9 +32,14 @@ export class AuthenticationComponent implements OnInit {
       this.processResponse()
       this.router.navigate(['/adminManagement'])
     })
+    .catch((err: any) => {
+
+      this.processError();
+
+    });
   }
 
-  processResponse() {
+  processResponse(item?:any) {
     debugger
     Swal.fire({
       toast: true,
@@ -45,15 +50,18 @@ export class AuthenticationComponent implements OnInit {
       title: 'Sign In Success',
       icon: 'success',
     });
-    // Swal.fire({
-    //   toast: true,
-    //   position: 'top-end',
-    //   showConfirmButton: false,
-    //   timer: 3000,
-    //   timerProgressBar: true,
-    //   title: 'Booking Room Fail',
-    //   icon: 'error',
-    // });
-    // return
+  }
+  processError() {
+    debugger
+    Swal.fire({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      title: 'User Name or Password wrong Try Again',
+      icon: 'error',
+    });
+    return
   }
 }

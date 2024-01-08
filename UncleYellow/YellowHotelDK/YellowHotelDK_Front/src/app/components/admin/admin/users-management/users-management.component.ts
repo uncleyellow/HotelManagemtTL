@@ -58,6 +58,7 @@ export class UsersManagementComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogDeleteRecordAnyComponent, {
       panelClass: 'bg-color', // Add your custom panel class
       data: {
+        deleteUsers:true,
         title: "Delete Users",
         item: item
       }

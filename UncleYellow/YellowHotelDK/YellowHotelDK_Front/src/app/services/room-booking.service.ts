@@ -12,7 +12,7 @@ export class RoomBookingService {
 
   }
 
-  createBooking(booking:any) {
+  createBooking(booking: any) {
     return this.http.post(
       'https://localhost:7156/api/RoomBooking',
       booking
@@ -44,5 +44,8 @@ export class RoomBookingService {
   }
   updateBooking(id: string, booking: any) {
     return this.http.put(`https://localhost:7156/api/RoomBooking/${id}`, booking);
+  }
+  deleteBooking(id: string) {
+    return this.http.delete(`https://localhost:7156/api/RoomBooking/${id}`);
   }
 }

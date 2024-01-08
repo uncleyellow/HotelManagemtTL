@@ -1,0 +1,109 @@
+.table {
+  border: 1px solid #dee2e6;
+}
+
+.table thead th {
+  border-bottom: 2px solid #dee2e6;
+}
+
+.table td,
+.table th {
+  padding: 0.75rem;
+}
+
+tbody tr {
+  cursor: pointer;
+}
+
+tbody tr:hover {
+  background-color: #f8f9fa;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination .page-item .page-link {
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+}
+
+.pagination .page-item.active .page-link {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.pagination .page-link:hover {
+  color: #007bff;
+  background-color: #e9ecef;
+  border-color: #dee2e6;
+}
+/* button {
+  margin-left: 5px;
+} */
+/* Mở rộng các cột */
+th, td {
+}
+
+/* Ngoại lệ cột cuối */
+th:last-child,
+td:last-child {
+  width: auto;
+}
+/* Căn giữa nội dung cột */
+th:last-child,
+td:last-child {
+  text-align: center;
+}
+
+/* Tạo khoảng trống cho nút */
+button {
+  margin: 0 5px;
+}
+.table {
+  color: #333;
+}
+
+tr:hover {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+th, td {
+  padding: 1em;
+}
+
+
+/* style cho pagination */
+.wrapper {
+  text-align: center;
+  border-bottom: 3px solid #343436;
+  border-radius: 15px solid;
+}
+table{
+  margin: auto;
+  padding: 20px;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+
+
+tr:first-child td:first-child{
+  border-top-left-radius: 10px;
+}
+tr:last-child td:first-child{
+  border-bottom-left-radius: 10px;
+}
+tr:first-child td:last-child{
+  border-top-right-radius: 10px;
+}
+tr:last-child td:last-child{
+  border-bottom-right-radius: 10px;
+}
+.thead-dark{
+  border-top-left-radius: 15px solid black;
+  border-top-right-radius: 15px solid black;
+  color: #fff;
+}
