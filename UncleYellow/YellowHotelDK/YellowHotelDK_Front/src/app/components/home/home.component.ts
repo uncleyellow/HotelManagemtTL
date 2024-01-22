@@ -61,7 +61,16 @@ export class HomeComponent implements OnInit {
       sentDate: new Date()
     };
     this.letter.createLetter(roomBooking).subscribe((rs: any) => {
-      this.processResponse()
+      // this.processResponse()
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        title: 'Send Letter Success',
+        icon: 'success',
+      });
     });
   }
 
