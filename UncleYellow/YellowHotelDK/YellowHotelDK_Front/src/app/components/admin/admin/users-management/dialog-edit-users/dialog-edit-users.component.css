@@ -1,0 +1,79 @@
+.dialog-container {
+
+}
+
+.dialog-content,
+.dialog-actions {
+  display: flex;
+  justify-content: center;
+}
+
+input,
+select,
+textarea {
+  width: 90%;
+}
+
+input,
+select {
+  /* margin-bottom: 10px; */
+}
+
+button {
+  width: 150px;
+  margin: 0 5px;
+}
+
+.dialog-container {
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-12,
+.col-6,
+.col-7,
+.col-5 {
+  padding-bottom: 0.7rem;
+}
+input,
+select,
+textarea {
+  width: 100%;
+}
+.mat-dialog-actions {
+  justify-content: center;
+}
+.mat-dialog-content {
+  padding: 1rem;
+}
+.label-dlg{
+  color: black;
+}
+.input-container {
+  position: relative;
+}
+
+.input-group {
+  display: flex;
+}
+
+input {
+  /* styles */
+}
+
+.password-toggle {
+  position: absolute;
+  top: 2px;
+  right: 25px;
+  color: black;
+  border-top-right-radius: 15px solid black;
+  border-bottom-right-radius: 15px solid black;
+}
+.password-toggle {
+  padding: 5px;
+}
+
