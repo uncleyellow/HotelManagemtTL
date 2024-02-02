@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-between">
+  <h1>Rooms Management</h1>
+  <!-- <button mat-raised-button style="color: #fff; background-color: blue;height: 40px;" (click)="addUsers()">Add Empolyees</button> -->
+</div>
+<!-- <input type="text" class="form-control" [(ngModel)]="searchParam" (input)="search(searchParam)"
+  placeholder="Search Letters By Name"> -->
+<br>
+<div class="table-responsive wrapper">
+  <table class="table table-radius table-fixed" style="border-radius: 15px solid black;">
+    <thead class="thead-dark" style="background-color:blue ;">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col" class="p-3">Name</th>
+        <th scope="col" class="p-3">Total Room</th>
+        <th scope="col" class="p-3">Empty Room</th>
+        <th scope="col" class="p-3">Rented Room</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="
+      let item of items
+        | paginate
+          : {
+              itemsPerPage: tableSize,
+              currentPage: page,
+              totalItems: count
+            };
+      let i = index
+    ">
+        <th scope="row">{{i + 1}}</th>
+        <td>{{item.name}}</td>
+        <td>{{item.totalRoom}}</td>
+        <td>{{item.emptyRoom}}</td>
+        <td>{{item.rentedRoom}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center">
+    <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+    </pagination-controls>
+  </div>
+</div>

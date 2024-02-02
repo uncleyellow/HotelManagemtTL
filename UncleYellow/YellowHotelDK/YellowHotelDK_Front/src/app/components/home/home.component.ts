@@ -5,6 +5,7 @@ import { LetterService } from '../../services/letter.service';
 import Swal from 'sweetalert2';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { KindOfRoomService } from 'src/app/services/kindOfRoom.service';
 
 @Component({
   selector: 'app-home',
@@ -19,12 +20,14 @@ export class HomeComponent implements OnInit {
   isLoggedIn = false;
   user_name ="";
   aboutUs:any
+  itemKindOfRomm:any = {}
   constructor(
     public dialog: MatDialog,
     public letter:LetterService,
     private router:Router,
     private authService: AuthService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public kindOfRoomService: KindOfRoomService
   ){
 
   }
@@ -33,6 +36,7 @@ export class HomeComponent implements OnInit {
     const fragment = this.route.snapshot.fragment;
     this.isLoggedIn == this.authService.isLoggedIn;
     this.fetch()
+    this.fetchKindOfRoom()
   }
 
   fetch() {
@@ -48,7 +52,9 @@ export class HomeComponent implements OnInit {
       }
     });
 
-    dialogRef.afterClosed().subscribe();
+    dialogRef.afterClosed().subscribe((rs:any) =>{
+      this.fetchKindOfRoom()
+    } );
   }
 
   sendLetter(){
@@ -116,4 +122,11 @@ export class HomeComponent implements OnInit {
     }
 
   }
+  fetchKindOfRoom() {
+    this.kindOfRoomService.getKindOfRoom().subscribe((rs: any) => {
+      debugger
+      this.itemKindOfRomm = rs
+    })
+  }
+
 }

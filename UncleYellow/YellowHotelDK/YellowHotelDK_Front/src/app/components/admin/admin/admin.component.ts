@@ -34,6 +34,9 @@ export class AdminComponent implements OnInit {
     if (item == 'Letter') {
       this.statusLink = 4
     }
+    if (item == 'Rooms') {
+      this.statusLink = 5
+    }
     else {
       return
     }

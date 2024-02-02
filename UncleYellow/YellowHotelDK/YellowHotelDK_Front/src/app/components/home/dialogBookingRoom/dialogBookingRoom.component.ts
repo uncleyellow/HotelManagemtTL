@@ -3,7 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import Swal from 'sweetalert2';
 import { RoomBookingService } from '../../../services/room-booking.service';
 import * as moment from 'moment';
-
+import { KindOfRoomService } from 'src/app/services/kindOfRoom.service';
+import { formatDate } from '@angular/common';
 @Component({
   selector: 'dialog-booking-room',
   templateUrl: './dialogBookingRoom.component.html',
@@ -22,10 +23,14 @@ export class DialogBookingRoomComponent implements OnInit {
   checkOutDate: any
   isEdit: any = false
   item: any = {};
+  itemKindOfRomm: any = {}
+  emptyRoom: any;
+  currentDate: any
   constructor(
     public dialogRef: MatDialogRef<DialogBookingRoomComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public roomBooking: RoomBookingService
+    public roomBooking: RoomBookingService,
+    public kindOfRoomService: KindOfRoomService
   ) {
     if (data.kindOfRoom) {
       // data.kindOfRoom == this.kindOfRoom
@@ -38,7 +43,7 @@ export class DialogBookingRoomComponent implements OnInit {
       const momentOutDate = moment(this.data.item.checkOutDate, 'DD/MM/YYYY hh:mm:ss a');
       // Format to ISO string
       this.data.item.checkInDate = momentInDate.format('YYYY-MM-DD[T]HH:mm')
-      this.data.item.checkOutDate= momentOutDate.format('YYYY-MM-DD[T]HH:mm')
+      this.data.item.checkOutDate = momentOutDate.format('YYYY-MM-DD[T]HH:mm')
       // this.kindOfRoom = this.data.item.kindOfRoom
       this.isEdit = true
       this.item = this.data.item
@@ -46,7 +51,25 @@ export class DialogBookingRoomComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.currentDate = formatDate(new Date(), 'yyyy-MM-ddTHH:mm', 'en-US');
+    this.fetchKindOfRoom()
+    this.checkRoomLeft()
+  }
 
+  fetchKindOfRoom() {
+    this.kindOfRoomService.getKindOfRoom().subscribe((rs: any) => {
+      this.itemKindOfRomm = rs
+      debugger
+      if (this.data.kindOfRoom == "Junior Suite") {
+        this.emptyRoom = this.itemKindOfRomm[1].emptyRoom
+      }
+      if (this.data.kindOfRoom == "Executive Suite") {
+        this.emptyRoom = this.itemKindOfRomm[2].emptyRoom
+      }
+      if (this.data.kindOfRoom == "Super Deluxe") {
+        this.emptyRoom = this.itemKindOfRomm[0].emptyRoom
+      }
+    })
   }
 
   processResponse() {
@@ -71,7 +94,6 @@ export class DialogBookingRoomComponent implements OnInit {
     // return
   }
   onCheckInDateChange() {
-    debugger
     // this.item.kindOfRoom = this.kindOfRoom
     const dateIn = new Date(this.item.checkInDate);
     const dateOut = new Date(this.item.checkOutDate);
@@ -92,8 +114,8 @@ export class DialogBookingRoomComponent implements OnInit {
     }
   }
   save() {
-    debugger
-    if (this.checkInDate > this.checkOutDate) {
+    if (this.item.checkInDate > this.item.checkOutDate) {
+      debugger
       Swal.fire({
         toast: true,
         position: 'top-end',
@@ -117,6 +139,18 @@ export class DialogBookingRoomComponent implements OnInit {
       });
       return
     }
+    if(this.item.roomNumber > this.emptyRoom || this.emptyRoom == 0){
+      Swal.fire({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        title: 'Room is sold out, please book another room',
+        icon: 'error',
+      });
+      return
+    }
     else {
       debugger
       const roomBooking = {
@@ -132,7 +166,6 @@ export class DialogBookingRoomComponent implements OnInit {
         status: 1
       };
       if (this.isEdit) {
-        debugger
         this.roomBooking.updateBooking(this.item.id, roomBooking)
           .subscribe((res: any) => {
             // handle response
@@ -141,16 +174,69 @@ export class DialogBookingRoomComponent implements OnInit {
             this.dialogRef.close(res)
           });
       }
+
       else {
-        debugger
         this.roomBooking.createBooking(roomBooking).subscribe((rs: any) => {
           this.processResponse()
           return this.dialogRef.close()
         });
       }
+      this.saveKindOfRoom()
     }
   }
 
+  saveKindOfRoom(){
+    debugger
+    if(this.item.kindOfRoom == "Junior Suite"){
+      const kindOfRoom = {
+        id: "5d649407-4404-48b3-9a58-69c9e31bd5b0",
+        name: this.item.kindOfRoom,
+        totalRoom: this.itemKindOfRomm[1].totalRoom,
+        emptyRoom: this.itemKindOfRomm[1].totalRoom - this.item.roomNumber,
+        rentedRoom: this.itemKindOfRomm[1].rentedRoom + this.item.roomNumber
+      }
+      this.kindOfRoomService.updateKindOfRoom(kindOfRoom).subscribe(((rs:any) => {
+        debugger
+      }))
+    }
+    if(this.item.kindOfRoom == "Executive Suite"){
+      const kindOfRoom = {
+        id: "eeadddc0-7558-4b96-83eb-d32a540d742b",
+        name: this.item.kindOfRoom,
+        totalRoom: this.itemKindOfRomm[2].totalRoom,
+        emptyRoom: this.itemKindOfRomm[2].totalRoom - this.item.roomNumber,
+        rentedRoom: this.itemKindOfRomm[2].rentedRoom + this.item.roomNumber
+      }
+      this.kindOfRoomService.updateKindOfRoom(kindOfRoom).subscribe(((rs:any) => {
+
+      }))
+    }
+    if(this.item.kindOfRoom == "Super Deluxe"){
+      const kindOfRoom = {
+        id: "9ddf4051-7444-4334-86ae-58514eee76b1",
+        name: this.item.kindOfRoom,
+        totalRoom: this.itemKindOfRomm[0].totalRoom,
+        emptyRoom: this.itemKindOfRomm[0].totalRoom - this.item.roomNumber,
+        rentedRoom: this.itemKindOfRomm[0].rentedRoom + this.item.roomNumber
+      }
+      this.kindOfRoomService.updateKindOfRoom(kindOfRoom).subscribe(((rs:any) => {
+
+      }))
+    }
+  }
+  checkRoomLeft(item?: any) {
+    if (item == "Junior Suite") {
+      this.emptyRoom = this.itemKindOfRomm[1].emptyRoom
+    }
+    if (item == "Executive Suite") {
+      this.emptyRoom = this.itemKindOfRomm[2].emptyRoom
+    }
+    if (item == "Super Deluxe") {
+      this.emptyRoom = this.itemKindOfRomm[0].emptyRoom
+    }
+    debugger
+    this.emptyRoom = this.emptyRoom - this.item.roomNumber
+  }
   cancel() {
     this.dialogRef.close()
   }

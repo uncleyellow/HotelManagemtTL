@@ -35,6 +35,7 @@
         </button>
         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
           <div class="navbar-nav mr-auto py-0">
+            <a (click)="routerLink('Rooms')" class="nav-item nav-link">Rooms</a>
             <a (click)="routerLink('Users')" class="nav-item nav-link">Users</a>
             <a (click)="routerLink('Rooms Booking')" class="nav-item nav-link">Rooms Booking</a>
             <a (click)="routerLink('Employees')" class="nav-item nav-link">Employees</a>
@@ -51,6 +52,7 @@
 <!-- Header End -->
 <br>
 <div class="container-fluid">
+  <app-rooms *ngIf="statusLink == 5"></app-rooms>
   <app-users-management *ngIf="statusLink == 1"></app-users-management>
   <app-booking-room-management *ngIf="statusLink == 2"></app-booking-room-management>
   <app-employees-management *ngIf="statusLink == 3"></app-employees-management>
